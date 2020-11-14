@@ -13,6 +13,8 @@ function Todo({ todo, index, deleteTodo, editTodo }) {
       <Col xs={2}>{index + 1}</Col>
       <Col >{todo.text}</Col>
 
+      
+       {/* DELETE */}
       <Button
         className="mx-2"
         size="sm"
@@ -22,12 +24,24 @@ function Todo({ todo, index, deleteTodo, editTodo }) {
         }}>Delete</Button>
       
 
+      {/* EDIT */}
       <Button
         className="mx-2"
         size="sm"
         variant="warning"
+        onClick={() => {
+          editTodo(index)
+        }}
+      >Edit</Button>
+      
 
-        >Edit</Button>
+      {/* COMPLETE */}
+        <Button
+        className="mx-2"
+        size="sm"
+        variant="success"
+
+        >Complete</Button>
     </Row>
   );
 };
@@ -65,7 +79,7 @@ function TodoForm({ addTodo }) {
 //=============== MAIN =============
 function App() {
   const [todos, setTodos] = React.useState([
-    { text: "Learn React" },
+    { text: "Read Peace and War by Leo Tolstoy" },
     { text: "Participate in CodeCamp" },
     { text: "Prepare dinner" }
   ]);
@@ -80,6 +94,13 @@ function App() {
     setTodos(newTodos);
   }
 
+  const editTodo = (todoIndex, text) => {
+    const newTodos = [...todos]
+    newTodos[todoIndex] = text
+    setTodos(newTodos);
+  }
+
+
 
 
   return (
@@ -93,14 +114,14 @@ function App() {
               {todos.map((todo, index) => {
                 console.log(index);
                 return (
-                  <Todo deleteTodo={deleteTodo} key={index} index={index} todo={todo}
+                  <Todo editTodo={editTodo} deleteTodo={deleteTodo} key={index} index={index} todo={todo}
                   />
                 )
               })}
             </Col>
           </Row>
           <Row className="py-4">
-            <Col><TodoForm addTodo={addTodo} /></Col>
+            <Col><TodoForm editTodo={editTodo} addTodo={addTodo} /></Col>
           </Row>
         
         </Container>
