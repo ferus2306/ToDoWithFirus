@@ -2,9 +2,8 @@ import './App.css';
 import React from 'react';
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Container, Form, Button, Col, Row } from 'react-bootstrap'
-
 
 //=============== Todo =============
 function Todo({ todo, index, deleteTodo, editTodo }) {
@@ -32,9 +31,6 @@ function Todo({ todo, index, deleteTodo, editTodo }) {
     </Row>
   );
 };
-
-
-
 
 
 //=============== Form =============
@@ -91,8 +87,6 @@ function App() {
       <Header />
       <main className="py-3">
         <Container>
-      
-          
           <Row className="app d-flex justify-content-center">
             <Col xs={12} className="text-center py-4">TO DO LIST</Col>
             <Col className="todo-list">
@@ -105,8 +99,6 @@ function App() {
               })}
             </Col>
           </Row>
-
-
           <Row className="py-4">
             <Col><TodoForm addTodo={addTodo} /></Col>
           </Row>
