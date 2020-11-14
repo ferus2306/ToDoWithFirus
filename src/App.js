@@ -76,7 +76,7 @@ function App() {
   }
 
   const deleteTodo = (todoIndex) => {
-    const newTodos = todos.filter((_, index) => index != todoIndex);
+    const newTodos = todos.filter((_, index) => index !== todoIndex);
     setTodos(newTodos);
   }
 
