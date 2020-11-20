@@ -12,10 +12,9 @@ function TodoList() {
         {id: 10, task: "Prepare dinner", completed: false }
     ]);
 
-    const [checkedPendingFilter, setCheckedPendingFilter] = useState();
+    const [checked, setCheckedComplete] = useState();
+    const toggle = () => setCheckedComplete(!checked);
 
-
-    
 
 
     const updateTodo = (todoId, newValue) => {
@@ -55,16 +54,11 @@ function TodoList() {
         setTodos(updatedTodos);
     };
 
-    const changeCheckedPending = id => {
-        console.log('Pending checked')
-        setCheckedPendingFilter(true);
+    const changeCheckComplete = id => {
+        setCheckedComplete(true)
+        console.log({checked})
+        
     }
-
-
-
-
-
-
 
 
     return (
@@ -75,11 +69,12 @@ function TodoList() {
 
                     <div className="d-flex justify-content-center py-4">
                         <Form.Check
+                            checked={checked} onChange={toggle}
                             className="mx-2"
                             type="checkbox" label="Filter by Pending" 
-                            onChange={changeCheckedPending}    
+                            onChange={toggle}                
                         />
-                        <Form.Check className="mx-2" type="checkbox" label="Filter by Completed" />
+                
                     </div>
                     
                     {todos.length < 1 &&
@@ -91,10 +86,15 @@ function TodoList() {
                         deleteTodo={deleteTodo}
                         completeTodo={completeTodo}
                         updateTodo={updateTodo}
-                        checkedPendingFilter={true}
-                        
+                        checked={checked}
+                     
                     />
+
+
+
                 </Col>
+
+                
           </Row>
         </Container>
     )

@@ -3,7 +3,7 @@ import { Button, Row, Col } from 'react-bootstrap'
 import TodoForm from './TodoForm'
 import '../App.css';
 
-function Todo({ todos, deleteTodo, completeTodo, updateTodo }) {
+function Todo({ todos, deleteTodo, completeTodo, updateTodo, checked }) {
 
 
   const [edit, setEdit] = useState({
@@ -25,7 +25,7 @@ function Todo({ todos, deleteTodo, completeTodo, updateTodo }) {
   }
 
 
-  return todos.map((todo, index) => (
+  return todos.filter((todo) => (checked && !todo.completed) || !checked).map((todo, index) => (
     <Row className="todo py-2 px-4 border" key={index}>
       <Col className={todo.completed ? 
       'todo-row complete' : 'todo-row'}>{todo.task}</Col>
