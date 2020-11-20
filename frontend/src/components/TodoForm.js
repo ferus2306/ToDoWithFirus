@@ -3,7 +3,7 @@ import { Form, Button, } from 'react-bootstrap'
 // import { v4 as uuidv4 } from 'uuid';
 
 function TodoForm( props ) {
-    const [input, setInput] = useState('');
+    const [input, setInput] = useState(props.edit ? props.edit.value : '');
     const inputRef = useRef(null)
 
 
@@ -30,20 +30,29 @@ function TodoForm( props ) {
 
     return (
         <Form className="my-3" onSubmit={handleSubmit}>
-        <Form.Group>
-            <Form.Control
+            <Form.Group>
+            {props.edit ? ( <Form.Control
             placeholder="Add a todo"
             name="text"
             type="text"
             value={input}
             onChange={handleTaskInputChange}
             ref={inputRef}
-            />
+            /> ): ( <Form.Control
+            placeholder="Add a todo"
+            name="text"
+            type="text"
+            value={input}
+            onChange={handleTaskInputChange}
+            ref={inputRef}
+            />)}
             </Form.Group>
+
+
+            {props.edit ? (<Button variant="primary" size="sm" type="submit">Save</Button>):<Button variant="primary" size="sm" type="submit">Add</Button>}
         
-            <Button variant="primary" size="sm" type="submit">
-                Add
-            </Button>
+            
+
         </Form>
   );
 }
